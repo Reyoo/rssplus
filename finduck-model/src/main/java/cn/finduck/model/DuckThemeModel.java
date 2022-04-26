@@ -29,7 +29,7 @@ public class DuckThemeModel extends Model<DuckThemeModel> {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.AUTO)
     Integer id;
     @TableField("theme_name")
     String themeName;

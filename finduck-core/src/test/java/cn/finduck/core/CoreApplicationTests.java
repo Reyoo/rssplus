@@ -159,9 +159,10 @@ class CoreApplicationTests {
                         if (StrUtil.isNotBlank(entry.getDescription().getValue())) {
                             duckItemInfoModel.setDescription(entry.getDescription().getValue());
                         }
+                        iDuckItemInfoService.save(duckItemInfoModel);
                         duckItemInfoModels.add(duckItemInfoModel);
                     }
-                    iDuckItemInfoService.saveBatch(duckItemInfoModels);
+//                    iDuckItemInfoService.saveBatch(duckItemInfoModels);
                 } catch (MalformedURLException | FeedException e) {
                     throw new RuntimeException(e);
                 } catch (IOException e) {

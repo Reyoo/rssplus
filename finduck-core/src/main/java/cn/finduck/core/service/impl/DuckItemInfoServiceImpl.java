@@ -4,13 +4,20 @@ import cn.finduck.core.mapper.DuckItemInfoModelMapper;
 import cn.finduck.core.mapper.DuckThemeModelMapper;
 import cn.finduck.core.service.IDuckItemInfoService;
 import cn.finduck.core.service.IDuckThemeService;
+import cn.finduck.dto.DuckItemInfoDTO;
 import cn.finduck.model.DuckItemInfoModel;
 import cn.finduck.model.DuckThemeModel;
+import cn.hutool.core.util.StrUtil;
+import com.alibaba.cola.dto.SingleResponse;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * *************************************************************************
@@ -26,9 +33,22 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Slf4j
-public class DuckItemInfoServiceImpl  extends ServiceImpl<DuckItemInfoModelMapper, DuckItemInfoModel> implements IDuckItemInfoService {
+public class DuckItemInfoServiceImpl extends ServiceImpl<DuckItemInfoModelMapper, DuckItemInfoModel> implements IDuckItemInfoService {
 
     private final DuckItemInfoModelMapper duckItemInfoModelMapper;
 
-
+    @Override
+    public SingleResponse<PageInfo<DuckItemInfoModel>> selectDuckItemByCondition(DuckItemInfoDTO dto) {
+        QueryWrapper<DuckItemInfoModel> queryWrapper = new QueryWrapper();
+        queryWrapper.lambda().eq(DuckItemInfoModel::getBanStatus, 1);
+        if (StrUtil.isNotBlank(dto.getMsgThemeName())) {
+            queryWrapper.lambda().eq(DuckItemInfoModel::getMsgThemeName, dto.getMsgThemeName());
+        }
+        if (StrUtil.isNotBlank(dto.getMsgThemeDesc())) {
+            queryWrapper.lambda().eq(DuckItemInfoModel::getMsgThemeDesc, dto.getMsgThemeDesc());
+        }
+        List<DuckItemInfoModel> duckItemInfoModels = duckItemInfoModelMapper.selectList(queryWrapper);
+        PageInfo<DuckItemInfoModel> duckItemInfoModelPageInfo = new PageInfo<>(duckItemInfoModels);
+        return SingleResponse.of(duckItemInfoModelPageInfo);
+    }
 }
