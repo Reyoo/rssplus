@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 尘锋科技
- *
- * @author chenzw
+ * @author QiSun
  * @version 1.0
- * @description: 调用企业微信接口同步数据
+ * @description:
  * @date 2021/4/7
  */
 @FeignClient(value = "finduckCore")
-@RequestMapping("/duckRssItem")
 public interface DuckItemInfoFeign {
 
 
@@ -29,7 +26,7 @@ public interface DuckItemInfoFeign {
      * @param dto
      * @return
      */
-    @PostMapping("/byConditions")
+    @PostMapping("/duckRssItem/byConditions")
     @ApiOperation(value = "根据条件获取订阅信息")
     SingleResponse<PageInfo<DuckItemInfoModel>> getRssByConditions(@RequestBody DuckItemInfoDTO dto);
 

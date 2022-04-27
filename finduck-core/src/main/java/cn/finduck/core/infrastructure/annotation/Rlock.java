@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @Desc:分布式锁注解
- * @author hzqiuxu
+ * @author QiSun
  * @version:1.0
  * @Date: 2021/5/14 17:14
  */
