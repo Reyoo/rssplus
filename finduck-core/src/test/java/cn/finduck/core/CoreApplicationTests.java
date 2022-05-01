@@ -82,35 +82,16 @@ class CoreApplicationTests {
                 SyndFeed feed = new SyndFeedInput().build(reader);
                 System.out.println(feed.getTitle());
                 System.out.println("***********************************");
-                ArrayList<DuckItemInfoModel> duckItemInfoModels = new ArrayList<>();
 
                 for (SyndEntry entry : feed.getEntries()) {
-                    DuckItemInfoModel duckItemInfoModel = new DuckItemInfoModel();
-                    if (StrUtil.isNotBlank(entry.getTitle())) {
-                        duckItemInfoModel.setTitle(entry.getTitle());
-                    }
-
-                    if (StrUtil.isNotBlank(entry.getAuthor())) {
-                        duckItemInfoModel.setAuthor(entry.getAuthor());
-                    }
-                    if (StrUtil.isNotBlank(entry.getLink())) {
-                        duckItemInfoModel.setLink(entry.getLink());
-                    }
-                    if (StrUtil.isNotBlank(entry.getDescription().getValue())) {
-                        duckItemInfoModel.setDescription(entry.getDescription().getValue());
-                    }
-                    duckItemInfoModels.add(duckItemInfoModel);
-//                    System.out.println(entry);
-//                    System.out.println("***********************************");
+                    System.out.println(entry);
+                    System.out.println("***********************************");
                 }
-                System.out.println(duckItemInfoModels.size());
-                System.out.println("Done");
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Test
@@ -141,26 +122,29 @@ class CoreApplicationTests {
                     System.out.println(feed.getTitle());
                     System.out.println("***********************************");
                     for (SyndEntry entry : feed.getEntries()) {
-                        DuckItemInfoModel duckItemInfoModel = DuckItemInfoModel.builder()
-                                .banStatus(true)
-                                .pubDate(LocalDateTime.now())
-                                .msgThemeName(themeName)
-                                .msgThemeId(t.getId())
-                                .msgThemeDesc(t.getThemeDescription()).build();
-                        if (StrUtil.isNotBlank(entry.getTitle())) {
-                            duckItemInfoModel.setTitle(entry.getTitle());
-                        }
-                        if (StrUtil.isNotBlank(entry.getAuthor())) {
-                            duckItemInfoModel.setAuthor(entry.getAuthor());
-                        }
-                        if (StrUtil.isNotBlank(entry.getLink())) {
-                            duckItemInfoModel.setLink(entry.getLink());
-                        }
-                        if (StrUtil.isNotBlank(entry.getDescription().getValue())) {
-                            duckItemInfoModel.setDescription(entry.getDescription().getValue());
-                        }
-                        iDuckItemInfoService.save(duckItemInfoModel);
-                        duckItemInfoModels.add(duckItemInfoModel);
+
+                        System.out.println(entry.toString());
+
+//                        DuckItemInfoModel duckItemInfoModel = DuckItemInfoModel.builder()
+//                                .banStatus(true)
+//                                .pubDate(LocalDateTime.now())
+//                                .msgThemeName(themeName)
+//                                .msgThemeId(t.getId())
+//                                .msgThemeDesc(t.getThemeDescription()).build();
+//                        if (StrUtil.isNotBlank(entry.getTitle())) {
+//                            duckItemInfoModel.setTitle(entry.getTitle());
+//                        }
+//                        if (StrUtil.isNotBlank(entry.getAuthor())) {
+//                            duckItemInfoModel.setAuthor(entry.getAuthor());
+//                        }
+//                        if (StrUtil.isNotBlank(entry.getLink())) {
+//                            duckItemInfoModel.setLink(entry.getLink());
+//                        }
+//                        if (StrUtil.isNotBlank(entry.getDescription().getValue())) {
+//                            duckItemInfoModel.setDescription(entry.getDescription().getValue());
+//                        }
+//                        iDuckItemInfoService.save(duckItemInfoModel);
+//                        duckItemInfoModels.add(duckItemInfoModel);
                     }
 //                    iDuckItemInfoService.saveBatch(duckItemInfoModels);
                 } catch (MalformedURLException | FeedException e) {

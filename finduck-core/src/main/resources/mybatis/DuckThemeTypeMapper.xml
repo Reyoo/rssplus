@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.finduck.core.mapper.DuckThemeTypeModelMapper">
+
+
+    <sql id="Base_Column_List">
+        te
+        .
+        id
+        AS id,
+            te.theme_name AS themeName,
+            te.theme_url_prefix AS themeUrlPrefix,
+            te.theme_description AS themeDescription,
+            te.theme_deleted AS themeDeleted,
+            te.createDate AS createDate
+    </sql>
+
+    <select id="getPageWithTypeByCondition" resultType="cn.finduck.model.DuckThemeModel">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM duck_theme te
+        LEFT JOIN duck_theme_type tt ON te.id = tt.theme_id
+        LEFT JOIN duck_type ty ON tt.type_id = ty.id
+        WHERE 1=1
+        <if test="typeId != null ">
+            AND tt.type_id = = #{typeId}
+        </if>
+        ORDER BY te.createDate,
+        theme_deleted
+    </select>
+</mapper>

@@ -1,6 +1,8 @@
 package cn.finduck.dto;
 
-import cn.finduck.model.DuckItemInfoModel;
+import cn.finduck.model.DuckThemeModel;
+import cn.finduck.model.DuckTypeModel;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,16 +20,11 @@ import java.io.Serializable;
  * @创建时间：2022/4/25 10:42
  */
 @Data
-public class DuckItemInfoDTO extends DuckItemInfoModel implements Serializable {
+public class DuckTypeDTO extends DuckTypeModel  {
 
 //    @ApiModelProperty(value = "页码",required = true)
     private Integer page;
 
 //    @ApiModelProperty("每页大小")
     private Integer pageSize;
-
-    /**
-     * 类型ID
-     */
-    private Integer typeId;
 }

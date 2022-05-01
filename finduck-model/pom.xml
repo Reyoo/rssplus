@@ -45,6 +45,18 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -54,7 +66,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.finduck.model.FinduckModelApplication</mainClass>
+                    <mainClass>cn.finduck.FinduckModelApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

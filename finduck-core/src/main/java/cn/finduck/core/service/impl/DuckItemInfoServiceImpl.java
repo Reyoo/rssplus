@@ -1,12 +1,15 @@
 package cn.finduck.core.service.impl;
 
+import cn.finduck.constant.FinduckConstants;
 import cn.finduck.core.mapper.DuckItemInfoModelMapper;
 import cn.finduck.core.mapper.DuckThemeModelMapper;
 import cn.finduck.core.service.IDuckItemInfoService;
 import cn.finduck.core.service.IDuckThemeService;
 import cn.finduck.dto.DuckItemInfoDTO;
 import cn.finduck.model.DuckItemInfoModel;
-import cn.finduck.model.DuckThemeModel;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import cn.finduck.model.DuckTypeModel;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.cola.dto.SingleResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -37,18 +40,19 @@ public class DuckItemInfoServiceImpl extends ServiceImpl<DuckItemInfoModelMapper
 
     private final DuckItemInfoModelMapper duckItemInfoModelMapper;
 
+
     @Override
-    public SingleResponse<PageInfo<DuckItemInfoModel>> selectDuckItemByCondition(DuckItemInfoDTO dto) {
+    public Page<DuckItemInfoModel> selectDuckItemByCondition(DuckItemInfoDTO dto, int page, int pageSize) {
+        Page<DuckItemInfoModel> pageInfo = new Page<DuckItemInfoModel>(page, pageSize);
         QueryWrapper<DuckItemInfoModel> queryWrapper = new QueryWrapper();
-        queryWrapper.lambda().eq(DuckItemInfoModel::getBanStatus, 1);
+        queryWrapper.lambda().eq(DuckItemInfoModel::getBanStatus, FinduckConstants.ONUSE);
         if (StrUtil.isNotBlank(dto.getMsgThemeName())) {
             queryWrapper.lambda().eq(DuckItemInfoModel::getMsgThemeName, dto.getMsgThemeName());
         }
         if (StrUtil.isNotBlank(dto.getMsgThemeDesc())) {
             queryWrapper.lambda().eq(DuckItemInfoModel::getMsgThemeDesc, dto.getMsgThemeDesc());
         }
-        List<DuckItemInfoModel> duckItemInfoModels = duckItemInfoModelMapper.selectList(queryWrapper);
-        PageInfo<DuckItemInfoModel> duckItemInfoModelPageInfo = new PageInfo<>(duckItemInfoModels);
-        return SingleResponse.of(duckItemInfoModelPageInfo);
+        Page<DuckItemInfoModel> duckItemInfoModelPage = duckItemInfoModelMapper.selectPage(pageInfo, queryWrapper);
+        return duckItemInfoModelPage;
     }
 }

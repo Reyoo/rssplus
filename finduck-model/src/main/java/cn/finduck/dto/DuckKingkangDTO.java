@@ -1,9 +1,8 @@
 package cn.finduck.dto;
 
-import cn.finduck.model.DuckItemInfoModel;
+import cn.finduck.model.DuckKingkangModel;
+import cn.finduck.model.DuckTypeModel;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * *************************************************************************
@@ -18,16 +17,11 @@ import java.io.Serializable;
  * @创建时间：2022/4/25 10:42
  */
 @Data
-public class DuckItemInfoDTO extends DuckItemInfoModel implements Serializable {
+public class DuckKingkangDTO extends DuckKingkangModel {
 
 //    @ApiModelProperty(value = "页码",required = true)
     private Integer page;
 
 //    @ApiModelProperty("每页大小")
     private Integer pageSize;
-
-    /**
-     * 类型ID
-     */
-    private Integer typeId;
 }
