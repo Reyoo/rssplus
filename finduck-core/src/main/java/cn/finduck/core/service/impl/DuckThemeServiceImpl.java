@@ -42,7 +42,7 @@ public class DuckThemeServiceImpl extends ServiceImpl<DuckThemeModelMapper, Duck
         if(StrUtil.isNotBlank(dto.getThemeDescription())) queryWrapper.lambda().eq(DuckThemeModel::getThemeDescription,dto.getThemeDescription());
         if(StrUtil.isNotBlank(dto.getThemeUrlPrefix())) queryWrapper.lambda().eq(DuckThemeModel::getThemeUrlPrefix,dto.getThemeUrlPrefix());
         queryWrapper.lambda().orderByDesc(DuckThemeModel::getThemeDeleted);
-        queryWrapper.lambda().orderByDesc(DuckThemeModel::getCreateDate);
+        queryWrapper.lambda().orderByDesc(DuckThemeModel::getCreateTime);
         return  duckThemeModelMapper.selectPage(pageInfo, queryWrapper);
     }
 

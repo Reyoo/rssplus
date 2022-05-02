@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,6 +53,13 @@ public class DuckThemeModel extends Model<DuckThemeModel> {
     @TableField("theme_deleted")
     @ApiModelProperty(value = "主题启禁用状态")
     Boolean themeDeleted;
-    @TableField("createDate")
-    LocalDate createDate;
+    @TableField("create_time")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    LocalDate createTime;
+
+
+    @TableField("use_default")
+    @ApiModelProperty(value = "使用默认前缀 true为使用 false为不适用")
+    Boolean useDefault;
 }

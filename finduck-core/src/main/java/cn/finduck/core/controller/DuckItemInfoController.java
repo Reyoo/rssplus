@@ -43,6 +43,7 @@ public class DuckItemInfoController {
     @ApiOperation("获取订阅信息")
     @RequestMapping(value = "/byConditions", method = RequestMethod.POST)
     public SingleResponse<Page<DuckItemInfoModel>> getDepartmentList(@RequestBody DuckItemInfoDTO dto) {
+        SingleResponse.buildFailure("5000","报错");
         return SingleResponse.of(iDuckItemInfoService.selectDuckItemByCondition(dto,dto.getPage() == null ? 0 : dto.getPage(), dto.getPageSize() == null ? 10 : dto.getPageSize()));
     }
 

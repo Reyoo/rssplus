@@ -44,9 +44,11 @@ public class DuckTypeServiceImpl extends ServiceImpl<DuckTypeModelMapper, DuckTy
         Page<DuckTypeModel> pageInfo = new Page<>(page,pageSize);
         //这里通过调用PageHelper的静态方法，设置了PageHelper的起始页以及每页的数量
         QueryWrapper<DuckTypeModel> queryWrapper = new QueryWrapper<>();
-        if(StrUtil.isNotBlank(dto.getTypeName())) queryWrapper.lambda().eq(DuckTypeModel::getTypeName,dto.getTypeName());
-        if(StrUtil.isNotBlank(dto.getTypeDesc())) queryWrapper.lambda().eq(DuckTypeModel::getTypeDesc,dto.getTypeDesc());
-        if(ObjectUtil.isNotNull(dto.getId())) queryWrapper.lambda().eq(DuckTypeModel::getId,dto.getId());
+        if(dto!=null){
+            if(StrUtil.isNotBlank(dto.getTypeName())) queryWrapper.lambda().eq(DuckTypeModel::getTypeName,dto.getTypeName());
+            if(StrUtil.isNotBlank(dto.getTypeDesc())) queryWrapper.lambda().eq(DuckTypeModel::getTypeDesc,dto.getTypeDesc());
+            if(ObjectUtil.isNotNull(dto.getId())) queryWrapper.lambda().eq(DuckTypeModel::getId,dto.getId());
+        }
 //        queryWrapper.lambda().eq(DuckTypeModel::getTypeStatus, FinduckConstants.ONUSE);
         queryWrapper.lambda().orderByDesc(DuckTypeModel::getTypeStatus);
         queryWrapper.lambda().orderByDesc(DuckTypeModel::getCreateDate);

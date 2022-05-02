@@ -12,7 +12,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 /**
  * *************************************************************************
@@ -30,4 +34,34 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class DuckKingkangServiceImpl extends ServiceImpl<DuckKingkangModelMapper, DuckKingkangModel> implements IDuckKingkangService {
 
+
+    private final DuckKingkangModelMapper duckKingkangModelMapper;
+
+    @Value("${finduck.uploadPathImg}")
+    private String uploadPathImg;
+
+    @Value("${finduck.virtualImgUrl}")
+    private String virtualImgUrl;
+
+    @Override
+    public String uploadFile(MultipartFile file) {
+        String fileName = "";
+        try {
+            if (file != null) {
+                fileName = System.currentTimeMillis() + file.getOriginalFilename();
+                String upload_file_dir = uploadPathImg;
+                String destFileName = uploadPathImg + fileName;
+                File upload_file_dir_file = new File(upload_file_dir);
+                if (!upload_file_dir_file.exists()) {
+                    upload_file_dir_file.mkdirs();
+                }
+                File targetFile = new File(upload_file_dir_file, fileName);
+                file.transferTo(targetFile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return virtualImgUrl + fileName;
+
+    }
 }

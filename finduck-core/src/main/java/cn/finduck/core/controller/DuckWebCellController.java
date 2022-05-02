@@ -9,6 +9,7 @@ import cn.finduck.dto.DuckWebCellDTO;
 import cn.finduck.model.DuckKingkangModel;
 import cn.finduck.model.DuckTypeModel;
 import cn.finduck.model.DuckWebCellModel;
+import cn.finduck.vo.DuckWebCellVO;
 import com.alibaba.cola.dto.SingleResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -53,5 +54,21 @@ public class DuckWebCellController {
         Page<DuckWebCellModel> duckTypeModelPage = iDuckWebCellService.getPageWithTypeByCondition(duckKingkangModel, dto.getPage() == null ? 0 : dto.getPage(), dto.getPageSize() == null ? 10 : dto.getPageSize());
         return SingleResponse.of(duckTypeModelPage);
     }
+
+
+    @ApiOperation("瀑布分页显示内容-根据主题ID 确认应该")
+    @RequestMapping(value = "/typePage", method = RequestMethod.POST)
+    public SingleResponse<List<DuckWebCellVO>> pageWebCell(Integer pageInfo, Integer pageSize) {
+        if (pageInfo == null) pageInfo = 0;
+        if (pageSize == null) pageSize = 10;
+        List<DuckWebCellVO> listingPage = iDuckWebCellService.pageWebCell(pageInfo, pageSize);
+        return SingleResponse.of(listingPage);
+    }
+
+
+
+
+
+
 
 }

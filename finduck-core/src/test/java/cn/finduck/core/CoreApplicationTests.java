@@ -76,7 +76,8 @@ class CoreApplicationTests {
 
 
         try {
-            String url = "https://rss-2ikz.vercel.app/zhihu/pin/daily";
+//            String url = "https://rss-2ikz.vercel.app/zhihu/pin/daily";
+            String url = "https://rss-2ikz.vercel.app/baidu/topwords/42";
 
             try (XmlReader reader = new XmlReader(new URL(url))) {
                 SyndFeed feed = new SyndFeedInput().build(reader);
