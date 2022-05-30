@@ -47,6 +47,7 @@ public class DuckWebCellController {
     private final IDuckWebCellService iDuckWebCellService;
 
     @ApiOperation("瀑布分页显示内容-根据主题ID 确认应该")
+    @Deprecated
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public SingleResponse<Page<DuckWebCellModel>> byConditions(@RequestBody DuckWebCellDTO dto) {
         DuckWebCellModel duckKingkangModel = new DuckWebCellModel();

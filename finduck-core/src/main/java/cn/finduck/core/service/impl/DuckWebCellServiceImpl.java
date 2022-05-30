@@ -7,6 +7,7 @@ import cn.finduck.core.service.IDuckWebCellService;
 import cn.finduck.dto.DuckNavigationDTO;
 import cn.finduck.model.*;
 import cn.finduck.vo.DuckItemInfoVO;
+import cn.finduck.vo.DuckTitleVO;
 import cn.finduck.vo.DuckWebCellVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -81,8 +82,8 @@ public class DuckWebCellServiceImpl extends ServiceImpl<DuckWebCellModelMapper, 
             themeTypeQueryWrapper.lambda().eq(DuckThemeTypeModel::getTypeId, t.getId());
             List<DuckThemeTypeModel> duckThemeTypeModels = duckThemeTypeModelMapper.selectList(themeTypeQueryWrapper);
             List<Integer> themeIds = duckThemeTypeModels.stream().map(s -> s.getThemeId()).collect(Collectors.toList());
-
-            getDuckThemeWithTypeId(duckWebCellVO, stringListHashMap, themeIds);
+            ArrayList<DuckTitleVO> duckTitleVOS = new ArrayList<>();
+            getDuckThemeWithTypeId(duckWebCellVO, duckTitleVOS, themeIds);
             duckWebCellVOS.add(duckWebCellVO);
         });
         return duckWebCellVOS;
@@ -99,7 +100,6 @@ public class DuckWebCellServiceImpl extends ServiceImpl<DuckWebCellModelMapper, 
 
         DuckWebCellVO duckWebCellVO = new DuckWebCellVO();
         ArrayList<DuckWebCellVO> duckWebCellVOS = new ArrayList<>();
-        HashMap<String, List<DuckItemInfoVO>> stringListHashMap = new HashMap<>();
 
         /**
          * 给类型赋名称
@@ -114,12 +114,14 @@ public class DuckWebCellServiceImpl extends ServiceImpl<DuckWebCellModelMapper, 
         themeTypeQueryWrapper.lambda().eq(DuckThemeTypeModel::getTypeId, dto.getTypeId());
         Page<DuckThemeTypeModel> duckThemeTypeModelPage = duckThemeTypeModelMapper.selectPage(page, themeTypeQueryWrapper);
         List<Integer> themeIds = duckThemeTypeModelPage.getRecords().stream().map(s -> s.getThemeId()).collect(Collectors.toList());
-        getDuckThemeWithTypeId(duckWebCellVO, stringListHashMap, themeIds);
+
+        ArrayList<DuckTitleVO> duckTitleVOS = new ArrayList<>();
+        getDuckThemeWithTypeId(duckWebCellVO, duckTitleVOS, themeIds);
         duckWebCellVO.setTotal(duckThemeTypeModelPage.getTotal());
         return duckWebCellVO;
     }
 
-    private void getDuckThemeWithTypeId(DuckWebCellVO duckWebCellVO, HashMap<String, List<DuckItemInfoVO>> stringListHashMap, List<Integer> themeIds) {
+    private void getDuckThemeWithTypeId(DuckWebCellVO duckWebCellVO,  ArrayList<DuckTitleVO> duckTitleVOS, List<Integer> themeIds) {
         themeIds.forEach(  b ->{
             DuckThemeModel duckThemeModel = duckThemeModelMapper.selectById(b);
             Page<DuckItemInfoModel> duckItemInfoModelPage = new Page<>(1,10);
@@ -134,9 +136,12 @@ public class DuckWebCellServiceImpl extends ServiceImpl<DuckWebCellModelMapper, 
                 BeanUtils.copyProperties(entity,vo);
                 return vo;
             }).collect(Collectors.toList());
-            stringListHashMap.put(duckThemeModel.getThemeDescription(),projectResponseList);
+            DuckTitleVO duckTitleVO = new DuckTitleVO();
+            duckTitleVO.setTitle(duckThemeModel.getThemeDescription());
+            duckTitleVO.setData(projectResponseList);
+            duckTitleVOS.add(duckTitleVO);
 
         });
-        duckWebCellVO.setData(stringListHashMap);
+        duckWebCellVO.setInfos(duckTitleVOS);
     }
 }

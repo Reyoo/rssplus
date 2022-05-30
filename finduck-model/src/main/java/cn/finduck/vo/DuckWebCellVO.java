@@ -3,6 +3,7 @@ package cn.finduck.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +20,10 @@ import java.util.Map;
  * @创建时间：2022/4/25 10:42
  */
 @Data
-public class DuckWebCellVO {
+public class DuckWebCellVO implements Serializable {
 
     String typeName;
-    Map<String,List<DuckItemInfoVO>> data;
+//    Map<String, List<DuckItemInfoVO>> data;
+    List<DuckTitleVO> infos;
     Long total;
 }

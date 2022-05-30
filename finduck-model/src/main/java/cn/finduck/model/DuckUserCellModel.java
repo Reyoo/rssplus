@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * *************************************************************************
  * <p/>
@@ -27,7 +29,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @TableName("duck_user_cell")
 @Builder
-public class DuckUserCellModel {
+public class DuckUserCellModel  implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value = "主键ID")

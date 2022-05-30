@@ -4,6 +4,8 @@ import cn.finduck.model.DuckKingkangModel;
 import cn.finduck.model.DuckTypeModel;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * *************************************************************************
  * <p/>
@@ -17,7 +19,7 @@ import lombok.Data;
  * @创建时间：2022/4/25 10:42
  */
 @Data
-public class DuckKingkangDTO extends DuckKingkangModel {
+public class DuckKingkangDTO extends DuckKingkangModel  implements Serializable {
 
 //    @ApiModelProperty(value = "页码",required = true)
     private Integer page;

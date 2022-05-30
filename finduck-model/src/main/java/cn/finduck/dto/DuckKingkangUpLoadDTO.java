@@ -1,7 +1,8 @@
-package cn.finduck.vo;
+package cn.finduck.dto;
 
 import cn.finduck.model.DuckKingkangModel;
-import lombok.Data;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 
@@ -17,7 +18,11 @@ import java.io.Serializable;
  * @Author：SunQi
  * @创建时间：2022/4/25 10:42
  */
-@Data
-public class DuckKingkangVO extends DuckKingkangModel  implements Serializable {
-    String typeName;
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+public class DuckKingkangUpLoadDTO extends DuckKingkangModel implements Serializable {
+
+    MultipartFile file;
 }

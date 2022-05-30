@@ -10,6 +10,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * *************************************************************************
  * <p/>
@@ -27,7 +29,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @TableName("duck_theme_type")
 @Builder
-public class DuckThemeTypeModel {
+public class DuckThemeTypeModel  implements Serializable {
 
     @ApiModelProperty(value = "主题类型关联ID")
     @TableId(value = "id", type = IdType.AUTO)

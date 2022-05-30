@@ -16,6 +16,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -35,7 +36,7 @@ import java.time.LocalDateTime;
 @TableName("duck_itemInfo")
 //@Accessors(chain = true)
 @Builder
-public class DuckItemInfoModel extends Model<DuckItemInfoModel> {
+public class DuckItemInfoModel extends Model<DuckItemInfoModel> implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     Integer id;

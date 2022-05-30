@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -33,7 +34,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @TableName("sys_user")
 @Builder
-public class SysUserModel {
+public class SysUserModel  implements Serializable {
 
     @TableId(value = "user_id", type = IdType.AUTO)
     @ApiModelProperty(value = "用户ID 主键")

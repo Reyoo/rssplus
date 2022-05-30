@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -31,7 +32,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("duck_theme")
-public class DuckThemeModel extends Model<DuckThemeModel> {
+public class DuckThemeModel extends Model<DuckThemeModel> implements Serializable {
 
     /**
      * 主键

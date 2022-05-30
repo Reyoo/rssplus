@@ -26,4 +26,7 @@ public class DuckNavigationVO implements Serializable {
     @ApiModelProperty(value = "类型描述")
     String typeDesc;
 
+    @ApiModelProperty(value = "路由字段")
+    String routeStr;
+
 }

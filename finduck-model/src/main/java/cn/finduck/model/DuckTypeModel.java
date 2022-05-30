@@ -17,6 +17,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -37,7 +38,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @TableName("duck_type")
 @Builder
-public class DuckTypeModel    {
+public class DuckTypeModel    implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value = "主键ID")
@@ -51,10 +52,13 @@ public class DuckTypeModel    {
     @ApiModelProperty(value = "类型状态")
     @TableField(value = "type_status")
     Boolean typeStatus;
+    @TableField(value = "router")
+    String routeStr;
     @ApiModelProperty(value = "创建时间")
     @TableField(value = "createDate")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     LocalDate createDate;
+
 
 }

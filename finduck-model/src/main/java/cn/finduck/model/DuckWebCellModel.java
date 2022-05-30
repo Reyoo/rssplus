@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -33,7 +34,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @TableName("duck_web_cell")
 @Builder
-public class DuckWebCellModel {
+public class DuckWebCellModel   implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value = "主键ID")

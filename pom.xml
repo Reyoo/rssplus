@@ -306,6 +306,30 @@
                 <version>1.6.6</version>
             </dependency>
 
+            <!--feign服务直接调用，支持文件、基础数据类型、对象，list等-->
+<!--            <dependency>-->
+<!--                <groupId>com.netflix.feign</groupId>-->
+<!--                <artifactId>feign-core</artifactId>-->
+<!--                <version>${netflix.feign-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.netflix.feign</groupId>-->
+<!--                <artifactId>feign-jackson</artifactId>-->
+<!--                <version>${netflix.feign-version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.netflix.feign</groupId>-->
+<!--                <artifactId>feign-slf4j</artifactId>-->
+<!--                <version>${netflix.feign-version}</version>-->
+<!--            </dependency>-->
+
+<!--            &lt;!&ndash;file转MultipartFile&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework</groupId>-->
+<!--                <artifactId>spring-mock</artifactId>-->
+<!--                <version>${spring-mock-version}</version>-->
+<!--            </dependency>-->
+
 
 
         </dependencies>
@@ -322,8 +346,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
-
     </dependencies>
 
 

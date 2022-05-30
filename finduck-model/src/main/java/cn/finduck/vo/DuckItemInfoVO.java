@@ -40,5 +40,6 @@ public class DuckItemInfoVO implements Serializable {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     LocalDateTime pubDate;
-
+    @ApiModelProperty(value = "热度")
+    String hotDegree;
 }

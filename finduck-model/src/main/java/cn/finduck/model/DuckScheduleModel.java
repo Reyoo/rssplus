@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -34,7 +35,7 @@ import java.time.LocalDateTime;
 @TableName("duck_kingkang")
 //@Accessors(chain = true)
 @Builder
-public class DuckScheduleModel extends Model<DuckScheduleModel> {
+public class DuckScheduleModel extends Model<DuckScheduleModel>  implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     Integer id;
