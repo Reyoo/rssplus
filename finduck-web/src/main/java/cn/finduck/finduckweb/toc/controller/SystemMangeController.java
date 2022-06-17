@@ -41,14 +41,14 @@ public class SystemMangeController {
 
     /**
      * 金刚位置新增
+     *
      * @return
      */
     @PostMapping("kk/saveUpOrUpUp")
     @ApiOperation(value = "新增或者更新")
-    public SingleResponse<Boolean> kingKangSaveOrUpdate(@RequestPart(name = "file",required = false) MultipartFile file,@RequestPart(name = "model") DuckKingkangModel model) {
-//    public SingleResponse<Boolean> kingKangSaveOrUpdate(@RequestBody  DuckKingkangUpLoadDTO dto) {
+    public SingleResponse<Boolean> kingKangSaveOrUpdate(@RequestPart(name = "file", required = false) MultipartFile file, @RequestPart(name = "model") DuckKingkangModel model) {
         DuckKingkangUpLoadDTO duckKingkangUpLoadDTO = new DuckKingkangUpLoadDTO();
-        BeanUtils.copyProperties(model,duckKingkangUpLoadDTO);
+        BeanUtils.copyProperties(model, duckKingkangUpLoadDTO);
         duckKingkangUpLoadDTO.setFile(file);
         SingleResponse<Boolean> singleResponse = duckCoreFegin.kingKangSaveOrUpdate(duckKingkangUpLoadDTO);
         if (singleResponse != null) {

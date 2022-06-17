@@ -10,6 +10,7 @@ import cn.finduck.vo.DuckKingkangVO;
 import cn.finduck.vo.DuckNavigationVO;
 import cn.finduck.vo.DuckWebCellVO;
 import com.alibaba.cola.dto.SingleResponse;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
@@ -35,7 +36,7 @@ public interface DuckCoreFegin {
 
     @PostMapping("/duckRssItem/byConditions")
     @ApiOperation(value = "根据条件获取订阅信息")
-    SingleResponse<PageInfo<DuckItemInfoModel>> getRssByConditions(@RequestBody DuckItemInfoDTO dto);
+    Page<DuckItemInfoModel> getRssByConditions(@RequestBody DuckItemInfoDTO dto);
 
 
     @GetMapping("/kk/list")

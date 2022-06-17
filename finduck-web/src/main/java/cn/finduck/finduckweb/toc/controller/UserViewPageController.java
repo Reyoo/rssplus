@@ -12,6 +12,7 @@ import cn.finduck.vo.DuckNavigationVO;
 import cn.finduck.vo.DuckWebCellVO;
 import com.alibaba.cola.dto.SingleResponse;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.ApiOperation;
@@ -43,13 +44,12 @@ public class UserViewPageController {
     private final DuckCoreFegin duckCoreFegin;
 
     @PostMapping(path = "search/rssName")
-    public SingleResponse<PageInfo<DuckItemInfoModel>> getHomePageInfoWithRssName(@RequestBody DuckItemInfoDTO dto) {
-//        SingleResponse<PageInfo<DuckItemInfoModel>> singleResponse = new SingleResponse<>();
-        SingleResponse<PageInfo<DuckItemInfoModel>> singleResponse = duckCoreFegin.getRssByConditions(dto);
-        if (singleResponse != null) {
-            log.info("reponse:{}", JSONObject.toJSONString(singleResponse));
+    public SingleResponse<Page<DuckItemInfoModel>> getHomePageInfoWithRssName(@RequestBody DuckItemInfoDTO dto) {
+        Page<DuckItemInfoModel> pageInfo = duckCoreFegin.getRssByConditions(dto);
+        if (pageInfo != null) {
+            log.info("reponse:{}", JSONObject.toJSONString(pageInfo));
         }
-        return singleResponse;
+        return SingleResponse.of(pageInfo);
 
     }
 

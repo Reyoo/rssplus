@@ -5,6 +5,7 @@ import cn.finduck.core.service.IDuckThemeService;
 import cn.finduck.dto.DuckItemInfoDTO;
 import cn.finduck.model.DuckItemInfoModel;
 import com.alibaba.cola.dto.SingleResponse;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -42,9 +43,8 @@ public class DuckItemInfoController {
 
     @ApiOperation("获取订阅信息")
     @RequestMapping(value = "/byConditions", method = RequestMethod.POST)
-    public SingleResponse<Page<DuckItemInfoModel>> getDepartmentList(@RequestBody DuckItemInfoDTO dto) {
-        SingleResponse.buildFailure("5000","报错");
-        return SingleResponse.of(iDuckItemInfoService.selectDuckItemByCondition(dto,dto.getPage() == null ? 0 : dto.getPage(), dto.getPageSize() == null ? 10 : dto.getPageSize()));
+    public Page<DuckItemInfoModel> getDepartmentList(@RequestBody DuckItemInfoDTO dto) {
+        return iDuckItemInfoService.selectDuckItemByCondition(dto,dto.getPage() == null ? 0 : dto.getPage(), dto.getPageSize() == null ? 10 : dto.getPageSize());
     }
 
 
